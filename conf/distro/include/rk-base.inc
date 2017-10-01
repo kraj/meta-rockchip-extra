@@ -33,10 +33,6 @@ ASSUME_SHLIBS += "libOpenCL.so:rockchip-mali"
 ASSUME_SHLIBS += "libgbm.so:rockchip-mali"
 ASSUME_SHLIBS += "libwayland-egl.so:rockchip-mali"
 
-PREFERRED_PROVIDER_virtual/kernel = "linux-rockchip"
-
-#IMAGE_INSTALL_append += "  rockchip-forwardports"
-
 DEFAULTTUNE_rk3036="cortexa7hf-neon-vfpv4"
 DEFAULTTUNE_rk3288="cortexa17hf-neon-vfpv4"
 DEFAULTTUNE_rk3328="aarch64"
