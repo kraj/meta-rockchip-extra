@@ -12,6 +12,8 @@ DISTROOVERRIDES = "rockchip"
 
 # Rockchip BSP default settings
 
+VIRTUAL-RUNTIME_init_manager = "systemd"
+
 PREFERRED_VERSION_libdrm = "rk"
 PREFERRED_VERSION_xserver-xorg = "rk"
 PREFERRED_VERSION_xserver-nodm-init = "2.0"
