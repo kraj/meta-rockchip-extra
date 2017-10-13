@@ -13,7 +13,7 @@ LICENSE = "MIT"
 inherit core-image
 
 TASK_INSTALL = " \
-	resize2fs \
+	96boards-tools \
 	dvfs-rules \
 "
 
