@@ -13,10 +13,11 @@ SRC_URI = " \
 	file://autostart-x11.sh \
 	file://autostart-wayland.sh \
 	file://autostart.sh \
+	file://autostart.service \
 "
 S = "${WORKDIR}"
 
-inherit update-rc.d
+inherit systemd allarch update-rc.d
 
 do_install() {
 	install -d ${D}/${sysconfdir}/init.d
@@ -28,9 +29,14 @@ do_install() {
 	else
 		install -m 0755 ${S}/autostart.sh ${D}/${sysconfdir}/init.d/autostart.sh
 	fi
+
+    install -d ${D}${systemd_unitdir}/system
+    install -m 0644 ${S}/autostart.service ${D}${systemd_unitdir}/system
 }
 
 RDEPENDS_${PN} = "bash"
 
 INITSCRIPT_NAME = "autostart.sh"
 INITSCRIPT_PARAMS = "start 100 5 3 ."
+
+SYSTEMD_SERVICE_${PN} = "autostart.service"
