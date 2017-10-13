@@ -3,9 +3,9 @@
 
 DESCRIPTION = "A image used for test and benchmark."
 
+# dbg-pkgs
 IMAGE_FEATURES += " \
 	debug-tweaks \
-	dbg-pkgs \
 	tools-testapps \
 	tools-profile \
 	tools-debug \
@@ -23,10 +23,17 @@ AUTO_TEST_INSTALL = "\
 	libdrm-tests \
 "
 
+OTHERS_TEST_INSTALL = "\
+    ${@bb.utils.contains("DISTRO_FEATURES", "x11 wayland", "", \
+       bb.utils.contains("DISTRO_FEATURES",     "wayland", "", \
+       bb.utils.contains("DISTRO_FEATURES",         "x11", "gtkperf", \
+                                                           "", d), d), d)} \
+"
+
+# autotest
 CORE_IMAGE_EXTRA_INSTALL += " \
 	openssh \
 	sshfs-fuse \
 	dhcp-client \
 	${AUTO_TEST_INSTALL} \
-	autotest \
 "
