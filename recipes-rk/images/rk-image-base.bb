@@ -5,7 +5,8 @@ DESCRIPTION = "Rockchip base Image."
 
 IMAGE_FEATURES += "\
 	package-management \
-	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11-base', '', d)} \
+	${@bb.utils.contains("DISTRO_FEATURES", "x11 wayland", "", \
+	   bb.utils.contains("DISTRO_FEATURES", "x11", "x11-base", "", d), d)} \
 "
 
 LICENSE = "MIT"
@@ -27,7 +28,7 @@ CORE_IMAGE_EXTRA_INSTALL += " \
 	io \
 	${TASK_INSTALL} \
 	${RF_INSTALL} \
-	${@bb.utils.contains('DISTRO_FEATURES', 'x11', '', '', d)} \
-	${@bb.utils.contains('DISTRO_FEATURES', 'wayland', \
-						'weston weston-init weston-examples weston-ini', '', d)} \
+	${@bb.utils.contains("DISTRO_FEATURES", "x11 wayland", "weston weston-init weston-examples weston-ini", \
+	   bb.utils.contains("DISTRO_FEATURES", "wayland", "weston weston-init weston-examples weston-ini", \
+	   bb.utils.contains("DISTRO_FEATURES", "x11", "", "", d), d), d)} \
 "
