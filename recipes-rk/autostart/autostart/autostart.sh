@@ -15,7 +15,9 @@ export QT_GSTREAMER_WINDOW_VIDEOSINK=kmssink
 export QT_QPA_PLATFORM=eglfs
 export QT_QPA_EGLFS_KMS_CONFIG=/tmp/qt.json
 
-cat > /tmp/qt.json <<EOF
+case $1 in
+start)
+	cat >/tmp/qt.json <<EOF
 {
   "device": "/dev/dri/card0",
   "hwcursor": true,
@@ -23,5 +25,10 @@ cat > /tmp/qt.json <<EOF
 }
 EOF
 
-cd /usr/share/qt5/examples/multimedia/Carmachine
-./Carmachine &
+	cd /usr/share/qt5/examples/multimedia/Carmachine
+	nohup ./Carmachine &
+	;;
+stop)
+	killall Carmachine
+	;;
+esac

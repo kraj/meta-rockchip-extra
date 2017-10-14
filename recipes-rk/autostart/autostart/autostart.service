@@ -1,9 +1,9 @@
 [Unit]
 Description=Start application at boot time
-After=plymouth-quit-wait.service
+After=multi-user.target
 
 [Service]
-Type=oneshot
+RemainAfterExit=yes
 ExecStart=-/etc/init.d/autostart.sh start
 ExecStop=-/etc/init.d/autostart.sh stop
 

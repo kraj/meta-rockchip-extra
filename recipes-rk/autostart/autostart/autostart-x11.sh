@@ -14,5 +14,12 @@ export QT_GSTREAMER_WIDGET_VIDEOSINK=rkximagesink
 export QT_GSTREAMER_WINDOW_VIDEOSINK=rkximagesink
 export DISPLAY=:0.0
 
-cd /usr/share/qt5/examples/multimedia/Carmachine
-sleep 1 && ./Carmachine &
+case $1 in
+start)
+	cd /usr/share/qt5/examples/multimedia/Carmachine
+	nohup ./Carmachine &
+	;;
+stop)
+	killall Carmachine
+	;;
+esac
