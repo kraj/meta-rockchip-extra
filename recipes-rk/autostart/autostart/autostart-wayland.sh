@@ -16,5 +16,12 @@ export QT_QPA_PLATFORM=wayland-egl
 export XDG_RUNTIME_DIR=/run/user/0
 export WAYLAND_DISPLAY=wayland-0
 
-cd /usr/share/qt5/examples/multimedia/Carmachine
-sleep 1 && ./Carmachine &
+case $1 in
+start)
+	cd /usr/share/qt5/examples/multimedia/Carmachine
+	nohup ./Carmachine &
+	;;
+stop)
+	killall Carmachine
+	;;
+esac
