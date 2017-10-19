@@ -34,15 +34,6 @@ PREFERRED_VERSION_gstreamer1.0-plugins-ugly = "1.12.0"
 PREFERRED_VERSION_gstreamer1.0-rtsp-server = "1.12.0"
 PREFERRED_VERSION_gstreamer1.0-libav = "1.12.0"
 
-# Workaround: libmali.so provided by rk having no SONAME field in it
-# so add it to fix rdepends problems
-ASSUME_SHLIBS += "libEGL.so:rockchip-mali"
-ASSUME_SHLIBS += "libGLESv1_CM.so:rockchip-mali"
-ASSUME_SHLIBS += "libGLESv2.so:rockchip-mali"
-ASSUME_SHLIBS += "libOpenCL.so:rockchip-mali"
-ASSUME_SHLIBS += "libgbm.so:rockchip-mali"
-ASSUME_SHLIBS += "libwayland-egl.so:rockchip-mali"
-
 DEFAULTTUNE_rk3036="cortexa7hf-neon-vfpv4"
 DEFAULTTUNE_rk3288="cortexa17hf-neon-vfpv4"
 DEFAULTTUNE_rk3328="aarch64"
