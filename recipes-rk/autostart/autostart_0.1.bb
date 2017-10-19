@@ -22,10 +22,10 @@ inherit systemd allarch update-rc.d
 do_install() {
 	install -d ${D}/${sysconfdir}/init.d
 
-	if [ "${USE_X11}" = "yes" ]; then
-		install -m 0755 ${S}/autostart-x11.sh ${D}/${sysconfdir}/init.d/autostart.sh
-	elif [ "${USE_WL}" = "yes" ]; then
+	if [ "${USE_WL}" = "yes" ]; then
 		install -m 0755 ${S}/autostart-wayland.sh ${D}/${sysconfdir}/init.d/autostart.sh
+	elif [ "${USE_X11}" = "yes" ]; then
+		install -m 0755 ${S}/autostart-x11.sh ${D}/${sysconfdir}/init.d/autostart.sh
 	else
 		install -m 0755 ${S}/autostart.sh ${D}/${sysconfdir}/init.d/autostart.sh
 	fi
