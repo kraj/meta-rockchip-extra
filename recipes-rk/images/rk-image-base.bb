@@ -28,7 +28,6 @@ CORE_IMAGE_EXTRA_INSTALL += " \
 	io \
 	${TASK_INSTALL} \
 	${RF_INSTALL} \
-	${@bb.utils.contains("DISTRO_FEATURES", "x11 wayland", "weston weston-init weston-examples weston-ini", \
-	   bb.utils.contains("DISTRO_FEATURES", "wayland", "weston weston-init weston-examples weston-ini", \
-	   bb.utils.contains("DISTRO_FEATURES", "x11", "", "", d), d), d)} \
+	${@bb.utils.contains("DISTRO_FEATURES", "x11 wayland", "xserver-xorg-xwayland weston-xwayland", "", d)} \
+	${@bb.utils.contains("DISTRO_FEATURES", "wayland", "weston weston-init weston-examples weston-ini", "", d)} \
 "
