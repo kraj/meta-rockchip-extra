@@ -23,7 +23,7 @@ XSERVER ?= "xserver-xorg \
 
 XSERVER_mali-utgard = "xserver-xorg \
 		   xf86-input-libinput \
-		   xf86-video-armsoc"
+		   xf86-video-armsoc-rockchip"
 
 PREFERRED_PROVIDER_virtual/egl = "rockchip-mali"
 PREFERRED_PROVIDER_virtual/libgles1 = "rockchip-mali"
