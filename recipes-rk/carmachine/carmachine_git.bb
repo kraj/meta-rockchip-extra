@@ -9,6 +9,7 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384
 
 SRC_URI = " \
 	git://github.com/rockchip-linux/carmachine.git;branch=master \
+	file://0001-don-t-use-frameless-for-mainwindow.patch \
 "
 
 SRCREV = "c042da6827a0159a328e9a4041777af7d0f4466d"
