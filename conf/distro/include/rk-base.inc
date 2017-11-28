@@ -39,6 +39,7 @@ PREFERRED_VERSION_gstreamer1.0-rtsp-server = "1.12.0"
 PREFERRED_VERSION_gstreamer1.0-libav = "1.12.0"
 
 DEFAULTTUNE_rk3036="cortexa7hf-neon-vfpv4"
+DEFAULTTUNE_rk3066="cortexa9-neon"
 DEFAULTTUNE_rk3288="cortexa17hf-neon-vfpv4"
 DEFAULTTUNE_rk3328="aarch64"
 DEFAULTTUNE_rk3399="aarch64"
