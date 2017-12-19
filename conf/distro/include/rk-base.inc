@@ -1,4 +1,5 @@
 require conf/distro/poky.conf
+require conf/distro/include/rk-tune.inc
 
 DISTRO = "rk-base"
 DISTRO_NAME = "Rockchip Distro Base"
@@ -29,11 +30,5 @@ PREFERRED_PROVIDER_virtual/egl = "rockchip-mali"
 PREFERRED_PROVIDER_virtual/libgles1 = "rockchip-mali"
 PREFERRED_PROVIDER_virtual/libgles2 = "rockchip-mali"
 PREFERRED_PROVIDER_virtual/libopencl = "rockchip-mali"
-
-DEFAULTTUNE_rk3036="cortexa7hf-neon-vfpv4"
-DEFAULTTUNE_rk3066="cortexa9hf-neon"
-DEFAULTTUNE_rk3288="cortexa17hf-neon-vfpv4"
-DEFAULTTUNE_rk3328="aarch64"
-DEFAULTTUNE_rk3399="aarch64"
 
 LICENSE_FLAGS_WHITELIST="commercial"
