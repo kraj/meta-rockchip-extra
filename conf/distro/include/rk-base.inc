@@ -39,4 +39,5 @@ PREFERRED_VERSION_gstreamer1.0-plugins-ugly = "1.12.0"
 PREFERRED_VERSION_gstreamer1.0-rtsp-server = "1.12.0"
 PREFERRED_VERSION_gstreamer1.0-libav = "1.12.0"
 
+PREFERRED_VERSION_ffmpeg = "git"
 LICENSE_FLAGS_WHITELIST="commercial"
