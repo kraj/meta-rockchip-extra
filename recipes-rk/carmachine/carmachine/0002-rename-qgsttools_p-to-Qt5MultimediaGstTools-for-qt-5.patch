@@ -1,0 +1,26 @@
+From 19109abafffc78caba68a5ed3e97f875b0900b1d Mon Sep 17 00:00:00 2001
+From: Jacob Chen <jacob-chen@iotwrt.com>
+Date: Fri, 19 Jan 2018 15:30:19 +0800
+Subject: [PATCH] rename qgsttools_p to Qt5MultimediaGstTools for qt 5.10
+
+Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+---
+ Carmachine.pro | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Carmachine.pro b/Carmachine.pro
+index 788a887..68c467a 100755
+--- a/Carmachine.pro
++++ b/Carmachine.pro
+@@ -30,7 +30,7 @@ PKGCONFIG += \
+     gstreamer-video-$$GST_VERSION \
+     gstreamer-pbutils-$$GST_VERSION
+ 
+-LIBS += -lqgsttools_p
++LIBS += -lQt5MultimediaGstTools
+ 
+ win32 {
+   LIBS += -lws2_32 -static
+-- 
+2.15.1
+
