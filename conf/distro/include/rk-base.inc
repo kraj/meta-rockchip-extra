@@ -31,4 +31,5 @@ PREFERRED_PROVIDER_virtual/libgles1 = "rockchip-mali"
 PREFERRED_PROVIDER_virtual/libgles2 = "rockchip-mali"
 PREFERRED_PROVIDER_virtual/libopencl = "rockchip-mali"
 
+PREFERRED_VERSION_ffmpeg = "git"
 LICENSE_FLAGS_WHITELIST="commercial"
