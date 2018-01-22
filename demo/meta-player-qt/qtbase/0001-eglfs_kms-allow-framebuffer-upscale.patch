@@ -2,7 +2,7 @@ diff --git a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgb
 index 87fb314..5f80a40 100644
 --- a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmscreen.cpp
 +++ b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmscreen.cpp
-@@ -219,6 +219,18 @@ void QEglFSKmsGbmScreen::flip()
+@@ -214,6 +214,18 @@ void QEglFSKmsGbmScreen::flip()
          }
      }
  
@@ -18,8 +18,8 @@ index 87fb314..5f80a40 100644
 +            qErrnoWarning(errno, "drmModeSetPlane failed");
 +    }
 +
-     int ret = drmModePageFlip(fd,
-                               op.crtc_id,
+     int ret = drmModePageFlip(device()->fd(),
+                               output().crtc_id,
                                fb->fb,
 diff --git a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms_support/qeglfskmsscreen.cpp b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms_support/qeglfskmsscreen.cpp
 index 3951f46..b97c498 100644
