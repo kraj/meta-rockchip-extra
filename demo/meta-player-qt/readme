@@ -10,9 +10,9 @@ The kernel patches should be modified if you don't use it with RK3288,RK3036.
 ### 2018.1.20 Updates:
 
     - UI upscaling support
-        now qt can run with 1080UI in a 4K screen.  
-        See patches in meta-rockchip/qtbase.  
+        now qt can run with 1080UI in a 4K screen.
         ENV: QT_QPA_EGLFS_WIDTH, QT_QPA_EGLFS_HEIGHT.  
+        See patche/0001-eglfs_kms-allow-framebuffer-upscale.patch and autostart-rk3036.sh.
 
     - No Need for kernel swap-layer patches.
         Those pathes were kept now just to indicate how it works, it could be removed if you 
