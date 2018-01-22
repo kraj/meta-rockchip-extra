@@ -23,6 +23,7 @@ cat >/etc/profile.d/qt-upscaling.sh <<EOF
 export QT_QPA_EGLFS_WIDTH=1280
 export QT_QPA_EGLFS_HEIGHT=720
 EOF
+source /etc/profile.d/qt-upscaling.sh
 
 # UI performance is not that good, i suspect that is driver issues
 echo performance > /sys/class/devfreq/10091000.gpu/governor
