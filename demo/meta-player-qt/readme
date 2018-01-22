@@ -7,6 +7,18 @@ For video playback application.
 
 The kernel patches should be modified if you don't use it with RK3288,RK3036.
 
+### performance
+
+##### UI
+UI performance might be not good enough, especially the SoC like rk3036 which use a energy efficient ARM-core.
+It's because our carmachine demo app have use too much QWidget. QWidget's contents are rendered using the CPU into images
+(x11, qt-eglfs), then uploaded into textures(qt eglfs), which lead a bad perofmrance, especially with qt eglfs plugin.
+
+Please use QQuickView/QQuickWindow for your application --- qt5everywheredemo is a good example.
+
+##### Video
+Video playback is done by gstreamer, you can do profiling via gst-luanch command. 
+
 ### 2018.1.20 Updates:
 
     - UI upscaling support
@@ -16,7 +28,7 @@ The kernel patches should be modified if you don't use it with RK3288,RK3036.
 
     - No Need for kernel swap-layer patches.
         Those pathes were kept now just to indicate how it works, it could be removed if you 
-        want to other application work in same kernel.
+        want other application work in same kernel.
         After removed swap-layer patches, we should do two changes.
     
         1.Remove this line to let kmssink use primary plane.
