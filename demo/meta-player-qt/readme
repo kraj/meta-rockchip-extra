@@ -1,8 +1,13 @@
-Machine: RK3288
+Machine: RK3288,RK3036
 DISTRO: rk-none
 IMAGE: qt5-image
 
 Bottom video layer + transparent qt UI.
 For video playback application.
 
-The kernel patches should be modified if you don't use it with RK3288.
+The kernel patches should be modified if you don't use it with RK3288,RK3036.
+
+Update:
+UI upscaling support, now qt can run with 1080UI in a 4K screen.  
+See patches in meta-rockchip/qtbase.  
+ENV: QT_QPA_EGLFS_WIDTH, QT_QPA_EGLFS_HEIGHT.  
