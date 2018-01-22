@@ -7,7 +7,31 @@ For video playback application.
 
 The kernel patches should be modified if you don't use it with RK3288,RK3036.
 
-Update:
-UI upscaling support, now qt can run with 1080UI in a 4K screen.  
-See patches in meta-rockchip/qtbase.  
-ENV: QT_QPA_EGLFS_WIDTH, QT_QPA_EGLFS_HEIGHT.  
+### 2018.1.20 Updates:
+
+    - UI upscaling support
+        now qt can run with 1080UI in a 4K screen.  
+        See patches in meta-rockchip/qtbase.  
+        ENV: QT_QPA_EGLFS_WIDTH, QT_QPA_EGLFS_HEIGHT.  
+
+    - No Need for kernel swap-layer patches.
+        Those pathes were kept now just to indicate how it works, it could be removed if you 
+        want to other application work in same kernel.
+        After removed swap-layer patches, we should do two changes.
+    
+        1.Remove this line to let kmssink use primary plane.
+        https://github.com/rockchip-linux/gstreamer-rockchip-extra/blob/master/gst/kms/gstkmssink.c#L536
+
+        2.Apply below patches to qtbase to let qt use overlay-plane.
+        --- a/qtbase/src/platformsupport/kmsconvenience/qkmsdevice.cpp	2017-04-30 10:48:13.207023440 +0200
+        +++ b/qtbase/src/platformsupport/kmsconvenience/qkmsdevice.cpp	2017-04-30 10:50:41.711934104 +0200
+        @@ -430,6 +430,9 @@
+
+        void QKmsDevice::createScreens()
+        {
+        +    // make sure we can also list framebuffers
+        +    drmSetClientCap(m_dri_fd, DRM_CLIENT_CAP_UNIVERSAL_PLANES, 1 );
+        +
+            drmModeResPtr resources = drmModeGetResources(m_dri_fd);
+            if (!resources) {
+                qWarning("drmModeGetResources failed");
