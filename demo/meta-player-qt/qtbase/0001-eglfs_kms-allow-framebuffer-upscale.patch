@@ -1,0 +1,53 @@
+diff --git a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmscreen.cpp b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmscreen.cpp
+index 87fb314..5f80a40 100644
+--- a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmscreen.cpp
++++ b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmscreen.cpp
+@@ -219,6 +219,18 @@ void QEglFSKmsGbmScreen::flip()
+         }
+     }
+ 
++    int srcw = qEnvironmentVariableIntValue("QT_QPA_EGLFS_WIDTH");
++    int srch = qEnvironmentVariableIntValue("QT_QPA_EGLFS_HEIGHT");
++    if (srcw && srch)
++    {
++        int ret = drmModeSetPlane(fd, op.plane_id, op.crtc_id,
++                                  fb->fb, 0,
++                                  0, 0, w, h,
++                                  0 << 16, 0 << 16, srcw << 16, srch << 16);
++        if (ret == -1)
++            qErrnoWarning(errno, "drmModeSetPlane failed");
++    }
++
+     int ret = drmModePageFlip(fd,
+                               op.crtc_id,
+                               fb->fb,
+diff --git a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms_support/qeglfskmsscreen.cpp b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms_support/qeglfskmsscreen.cpp
+index 3951f46..b97c498 100644
+--- a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms_support/qeglfskmsscreen.cpp
++++ b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms_support/qeglfskmsscreen.cpp
+@@ -94,9 +94,21 @@ void QEglFSKmsScreen::setVirtualPosition(const QPoint &pos)
+ QRect QEglFSKmsScreen::rawGeometry() const
+ {
+     const int mode = m_output.mode;
+-    return QRect(m_pos.x(), m_pos.y(),
+-                 m_output.modes[mode].hdisplay,
+-                 m_output.modes[mode].vdisplay);
++    int width = qEnvironmentVariableIntValue("QT_QPA_EGLFS_WIDTH");
++    int height = qEnvironmentVariableIntValue("QT_QPA_EGLFS_HEIGHT");
++
++    if (width && height)
++    {
++        return QRect(m_pos.x(), m_pos.y(),
++                     width,
++                     height);
++    }
++    else
++    {
++      return QRect(m_pos.x(), m_pos.y(),
++                   m_output.modes[mode].hdisplay,
++                   m_output.modes[mode].vdisplay);
++    }
+ }
+ 
+ int QEglFSKmsScreen::depth() const
+ 
