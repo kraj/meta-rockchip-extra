@@ -1,0 +1,37 @@
+From 2021d486cbeac671594c8f78563c35623ea2f5c9 Mon Sep 17 00:00:00 2001
+From: Jacob Chen <jacob-chen@iotwrt.com>
+Date: Mon, 22 Jan 2018 13:57:19 +0800
+Subject: [PATCH] kmssink: correct position for UI upscaling
+
+Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+---
+ gst/kms/gstkmssink.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/gst/kms/gstkmssink.c b/gst/kms/gstkmssink.c
+index 7747157..576dc74 100644
+--- a/gst/kms/gstkmssink.c
++++ b/gst/kms/gstkmssink.c
+@@ -1314,6 +1314,19 @@ gst_kms_sink_show_frame (GstVideoSink * vsink, GstBuffer * buf)
+   kms_get_render_rectangle (self, &result.x, &result.y, &result.w, &result.h);
+   gst_video_sink_center_rect (src, result, &result, TRUE);
+ 
++  // See https://github.com/rockchip-linux/meta-rockchip-extra/tree/master/demo/meta-player-qt
++  if(g_getenv ("QT_QPA_EGLFS_WIDTH")) {
++    int qt_height, qt_width;
++
++    qt_width = g_ascii_strtoull(g_getenv ("QT_QPA_EGLFS_WIDTH"), NULL, 0);
++    qt_height = g_ascii_strtoull(g_getenv ("QT_QPA_EGLFS_HEIGHT"), NULL, 0);
++
++    result.x = result.x * dst.w / qt_width;
++    result.y = result.y * dst.h / qt_height;
++    result.w = result.w * dst.w / qt_width;
++    result.h = result.h * dst.h / qt_height;
++  }
++
+   /* handle hardware limition */
+   if (src.w >= 3840)
+     src.h /= 2;
+-- 
+2.15.1
+
